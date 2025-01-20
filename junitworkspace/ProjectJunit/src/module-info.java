@@ -1,0 +1,9 @@
+/**
+ * 
+ */
+/**
+ * 
+ */
+module ProjectJunit {
+	requires junit;
+}
