@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 
 @RestController
+@CrossOrigin(origins="*")
 public class CountryController {
     @Autowired
     private CountryService s;
