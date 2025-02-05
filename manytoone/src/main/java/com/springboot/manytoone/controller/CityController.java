@@ -19,6 +19,7 @@ import java.util.*;
 
 
 @RestController
+@CrossOrigin(origins="*")
 public class CityController {
    @Autowired
     private CityService s;
