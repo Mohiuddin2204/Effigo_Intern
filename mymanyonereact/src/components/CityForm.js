@@ -10,43 +10,53 @@ const CityForm = () => {
     population: 0,
     latitude: "",
     longitude: "",
-    country: { countryId: "" },
+    country: { countryId: "" }, // Ensure country is always an object
   });
+
   const [countries, setCountries] = useState([]);
   const navigate = useNavigate();
   const { cityId } = useParams();
 
   useEffect(() => {
-    axios.get("http://localhost:1122/countries").then((response) => setCountries(response.data));
+    axios.get("http://localhost:8080/countries")
+      .then((response) => setCountries(response.data))
+      .catch(() => toast.error("Error fetching countries"));
+
     if (cityId) {
-      axios
-        .get(`http://localhost:1122/countries/cities/${cityId}`)
-        .then((response) => setCity(response.data))
+      axios.get(http://localhost:8080/countries/cities/${cityId})
+        .then((response) => {
+          const cityData = response.data;
+          setCity({
+            ...cityData,
+            country: cityData.country ? cityData.country : { countryId: "" }, // Ensure country object
+          });
+        })
         .catch(() => toast.error("Error fetching city"));
     }
   }, [cityId]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setCity({ ...city, [name]: value });
+    setCity((prevCity) => ({ ...prevCity, [name]: value }));
   };
 
   const handleCountryChange = (e) => {
-    setCity({ ...city, country: { countryId: e.target.value } });
+    setCity((prevCity) => ({
+      ...prevCity,
+      country: { countryId: e.target.value || "" }, // Ensure valid countryId
+    }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const method = cityId ? axios.put : axios.post;
     const url = cityId
-  ? `http://localhost:1122/countries/cities/${cityId}`
-  : "http://localhost:1122/countries/cities";
-
+      ? http://localhost:8080/countries/cities/${cityId}
+      : "http://localhost:8080/countries/cities";
 
     method(url, city)
       .then(() => {
-        toast.success(`City ${cityId ? "updated" : "added"} successfully`);
-
+        toast.success(City ${cityId ? "updated" : "added"} successfully);
         navigate("/cities");
       })
       .catch(() => toast.error("Error saving city"));
@@ -72,7 +82,7 @@ const CityForm = () => {
           <Form.Control
             as="select"
             name="country"
-            value={city.country.countryId}
+            value={city.country?.countryId || ""}
             onChange={handleCountryChange}
             required
           >
