@@ -24,17 +24,17 @@ public class SecurityApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		User user=new User();
-		user.setEmail("a@gmail.com");
-		user.setPassword(this.bcpe.encode("a"));
+		user.setUsername("user");
+		user.setEmail("user@gmail.com");
+		user.setPassword(this.bcpe.encode("user123"));
 		user.setRole("ROLE_NORMAL");
-		user.setUsername("a");
 		this.userRepository.save(user);
 		
 		User user1=new User();
-		user1.setEmail("b@gmail.com");
-		user1.setPassword(this.bcpe.encode("b"));
+		user1.setUsername("admin");
+		user1.setEmail("admin@gmail.com");
+		user1.setPassword(this.bcpe.encode("admin123"));
 		user1.setRole("ROLE_ADMIN");
-		user1.setUsername("b");
 		this.userRepository.save(user1);
 	}
 
