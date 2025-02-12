@@ -32,6 +32,26 @@ const BookList = () => {
     }
   };
 
+  const downloadBookInfo = (book) => {
+    const authors = book.authors && book.authors.length > 0
+      ? book.authors.map((author) => author.authorName).join(", ")
+      : "No authors available";
+      
+    const publisher = book.publisher ? book.publisher.publisherName : "No publisher assigned";
+
+    const content = `Author(s): ${authors}\nPublisher: ${publisher}`;
+    const blob = new Blob([content], { type: "text/plain" });
+    const url = window.URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `${book.name}_details.txt`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(url);
+  };
+
   return (
     <div>
       <h2>Books List</h2>
@@ -54,13 +74,11 @@ const BookList = () => {
               <td>{book.id}</td>
               <td>{book.name}</td>
               <td>
-                {/* Conditional check for authors */}
                 {book.authors && book.authors.length > 0
                   ? book.authors.map((author) => author.authorName).join(", ")
                   : "No authors available"}
               </td>
               <td>
-                {/* Conditional check for publisher */}
                 {book.publisher ? book.publisher.publisherName : "No publisher assigned"}
               </td>
               <td>
@@ -69,6 +87,9 @@ const BookList = () => {
                 </Link>
                 <Button variant="danger" onClick={() => deleteBook(book.id)}>
                   Delete
+                </Button>
+                <Button variant="info" className="mx-2" onClick={() => downloadBookInfo(book)}>
+                  Download
                 </Button>
               </td>
             </tr>
