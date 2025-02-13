@@ -1,0 +1,5 @@
+Contains:
+Basic Auth
+Form based
+Database auth
+JWT Authentication
