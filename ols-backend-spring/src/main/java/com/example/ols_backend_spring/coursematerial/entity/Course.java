@@ -35,6 +35,14 @@ public class Course {
     @JsonIgnoreProperties("courses")
     private Category category;
 
+/*
+no need of manytomany table : users and courses, as users will be adding any course in orders one
+many to many should be in like books and authors : as adding different authors in books
+AND UNLIKELY HERE in our complex project: we are not adding courses in users table and nor users in courses table
+
+    */
+
+    
     @ManyToMany(mappedBy = "courses")
     @JsonIgnoreProperties("courses")
     private List<User> users = new ArrayList<>();
