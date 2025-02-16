@@ -32,6 +32,9 @@ public class PaymentController {
         return ResponseEntity.ok(payment1);
     }
 
+//Cant delete payment first , as it is a process paid: DELETE ORDER=>then automatically respective payment deleted
+
+    
     @DeleteMapping("/auth/admin/api/payments/{payId}")
     public ResponseEntity<Void> deletePayment(@PathVariable Long payId){
         paymentService.deletePayment(payId);
