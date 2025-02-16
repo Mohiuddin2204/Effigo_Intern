@@ -11,7 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(schema = "ols")
+@Table(name = "orders_table", schema = "ols")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
