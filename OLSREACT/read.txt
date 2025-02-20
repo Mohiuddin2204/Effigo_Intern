@@ -1,0 +1,5 @@
+React folder for the online learning system:
+5 ENTITIES
+MULTIPLE TABLES
+SECURITY ADDED : DIFFERENT ROLES
+REACT + SPRING BOOT
