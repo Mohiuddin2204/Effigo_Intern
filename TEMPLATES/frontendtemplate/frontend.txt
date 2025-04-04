@@ -1,0 +1,1 @@
+contains the .js files for the React frontend for Templates project.
