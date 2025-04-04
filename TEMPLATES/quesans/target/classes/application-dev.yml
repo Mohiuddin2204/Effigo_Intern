@@ -1,0 +1,19 @@
+server:
+  port: 8082
+
+logging:
+  level:
+    com.template.quesans: DEBUG
+    org.springframework: INFO
+    org.hibernate.SQL: DEBUG
+
+tenants:
+  datasources:
+    tenant1:
+      url: jdbc:postgresql://localhost:5433/template_dev
+      username: postgres
+      password: affu2004
+    tenant2:
+      url: jdbc:postgresql://localhost:5433/template_tenant2_dev
+      username: postgres
+      password: affu2004

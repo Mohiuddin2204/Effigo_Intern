@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: quesans
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+  profiles:
+    active: dev
+
+server:
+  port: 8082
+
+tenants:
+  datasources:
+    tenant1:
+      url: jdbc:postgresql://localhost:5433/template
+      username: postgres
+      password: affu2004
+    tenant2:
+      url: jdbc:postgresql://localhost:5433/template_tenant2
+      username: postgres
+      password: affu2004

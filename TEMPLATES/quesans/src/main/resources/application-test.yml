@@ -1,0 +1,18 @@
+server:
+  port: 8082
+
+logging:
+  level:
+    com.template.quesans: DEBUG
+    org.springframework: INFO
+
+tenants:
+  datasources:
+    tenant1:
+      url: jdbc:h2:mem:template_test;DB_CLOSE_DELAY=-1
+      username: sa
+      password: ""
+    tenant2:
+      url: jdbc:h2:mem:template_tenant2_test;DB_CLOSE_DELAY=-1
+      username: sa
+      password: ""
